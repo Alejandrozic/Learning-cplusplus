@@ -1,11 +1,13 @@
 #include <iostream>
 #include <cassert>
+#include <cstdlib>
 #include "my_basic_class.h"
 #include <string>
 
 using std::cout;
 using std::cin;
 using std::endl;
+
 using my_basic_class_namespace::my_basic_class;
 
 void _variables();
@@ -17,7 +19,8 @@ void _reference_pointer();
 void _change_by_reference(int& y, const int& x);
 void _change_by_pointer(int* y);
 void _typedef();
-
+void _pointers();
+void _this_pointer();
 
 int main() {
 	_reference_pointer();
@@ -40,7 +43,8 @@ void _variables() {
 	// -- constructor initialization [C++ Only]
 	int d(10);
 	// -- uniform initialization
-	int e{ 0 };
+	// C++ 11
+	// int e{ 0 };
 
 	/*
 		Type		Size(Bytes)
@@ -72,9 +76,14 @@ void _assert() {
 
 void _big_o() {
 	/*
-		Linear			O(n)
-		Quadratic		O(n^2)
-		Logarithmic		O(log(n))
+		Constant		O(1)		print first item
+		Linear			O(n)		print list of items
+		Quadratic		O(n^2)		print table of items
+		Cubic			O(n^3)		-
+		Logarithmic		O(log(n))	binary search
+		Log-Linear		O(nlog(n))	-
+		Exponential		O(2^n)		listing all the subset of a set
+		Factorial		O(n!)		-
 	*/
 }
 
@@ -135,6 +144,35 @@ void _change_by_pointer(int* y) {
 	*y = 50;
 }
 
+void _pointers(){
+	int x = 10;
+	int y = 11;
+	int* ptr_x = &x;
+	int * ptr_y = &y;
+
+	// ptr_x = ptr_y; 		Changes pointer address of ptr_x to ptr_y
+	// *ptr_x = *ptr_y;		Changes the value of address at ptr_x to the value of address at ptr_y
+
+	// Dynamic Variables
+	int* dv_ptr;		// Pointer Declared
+	dv_ptr = new int;	// Memory is allocated for a INT size from heap
+	*dv_ptr = 10;		// Memory allocation is given the value 10
+	delete dv_ptr;		// returns heap memory to be reused
+
+	// Dynamic Arrays
+	double *array_ptr;			// Declared but point to nothing
+	array_ptr = new double[4];	// array_ptr now points to first [0] item of array
+	array_ptr[2] = 42;			// array_ptr now points to first [0] item of array
+	delete array_ptr;			// returns heap memory to be reused
+	// delete [ ] array_ptr; 	// Alternate DELETE
+
+	// Using dynamic memory requires:
+	//		1) A Destructor 						( -- ~myclass() --)
+	//		2) A Copy Constructor 					(-- myclass(const myclass& source) --)
+	//		3) An Overloaded Assignment Operator 	(-- =operator --)
+
+}
+
 void _operator_overloading() {
 	/*
 		Operator Overloading happens when we define a new
@@ -158,5 +196,34 @@ void _typedef() {
 	typedef float FLOAT32;
 	typedef double FLOAT64;
 	typedef unsigned int U_INT;
+
+}
+
+void _this_pointer(){
+	// this can only be used inside of a class and points to the address of the object
+	// if (this == &source)
+	//    return;
+}
+
+void _data_structure_modifier_big_o(){
+	/*
+	VECTOR
+		push_back	O(1)
+		insert		O(n)
+		pop_back	O(1)
+		assign		O(n)
+		erase		O(n)
+	
+	
+	LIST
+		push_front	O(1)
+		push_back	O(1)
+		insert		O(1)
+		pop_front	O(1)
+		pop_back	O(1)
+		erase		O(1)
+		remove		O(n)
+
+	*/
 
 }
