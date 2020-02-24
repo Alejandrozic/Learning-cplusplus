@@ -163,8 +163,8 @@ void _pointers(){
 	double *array_ptr;			// Declared but point to nothing
 	array_ptr = new double[4];	// array_ptr now points to first [0] item of array
 	array_ptr[2] = 42;			// array_ptr now points to first [0] item of array
-	delete array_ptr;			// returns heap memory to be reused
-	// delete [ ] array_ptr; 	// Alternate DELETE
+	delete array_ptr;			// deletes pointer
+	// delete [ ] array_ptr; 		// releases memory of array data at pointer
 
 	// Using dynamic memory requires:
 	//		1) A Destructor 						( -- ~myclass() --)
