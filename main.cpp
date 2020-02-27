@@ -227,3 +227,10 @@ void _data_structure_modifier_big_o(){
 	*/
 
 }
+
+void struct_vs_class(){
+	/*
+	STRUCT - By default all members and member functions are public
+	CLASSS - By default all members and member functions are private
+	*/
+}
